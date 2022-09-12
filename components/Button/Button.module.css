@@ -1,0 +1,7 @@
+.btn {
+  @apply py-[8px] px-[16px] flex justify-center items-center border rounded-[20px] font-bold min-w-fit;
+}
+
+.primary {
+  @apply bg-blue-500 hover:bg-blue-200 text-white;
+}
