@@ -1,3 +1,10 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "prettier"],
+  "overrides": [
+    {
+      // enable eslint-plugin-testing-library & eslint-plugin-jest-dom for test files only
+      "files": ["**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:jest-dom/recommended", "plugin:testing-library/react"]
+    }
+  ]
 }
