@@ -1,0 +1,36 @@
+.desktop_only {
+  @apply hidden sm:table-cell;
+}
+
+.mobile_mode {
+  @apply text-right sm:text-left;
+}
+
+.mobile_only {
+  @apply block sm:hidden;
+}
+
+.block_chain_col {
+  @apply flex flex-row flex-nowrap align-middle sm:flex-wrap;
+  flex: 2 1 0%;
+}
+
+.block_chain_name_wrap {
+  @apply flex align-middle flex-wrap flex-col sm:flex-1 sm:flex-row;
+}
+
+.block_chain_name {
+  @apply mx-0 ml-[16px] font-bold flex-1 sm:mx-[20px];
+}
+
+.symbol {
+  @apply font-light text-gray-600 ml-[16px] sm:mx-[20px] w-[56px];
+}
+
+.percentage_up {
+  @apply text-green-500;
+}
+
+.percentage_down {
+  @apply text-red-500;
+}

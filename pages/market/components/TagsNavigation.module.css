@@ -1,0 +1,7 @@
+.tags_navigation {
+  @apply flex w-full overflow-scroll mb-[20px] sm:mb-[32px] px-6 sm:p-0;
+}
+
+.btn_tag {
+  margin-right: 16px;
+}
