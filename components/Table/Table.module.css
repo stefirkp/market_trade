@@ -1,0 +1,7 @@
+.thead_col {
+  @apply text-lg text-gray-900 p-5 text-left font-bold;
+}
+
+.tbody_col {
+  @apply text-base text-gray-900 p-5 font-bold;
+}
