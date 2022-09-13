@@ -9,6 +9,7 @@ module.exports = {
     'lib/mocks/*',
     'pages/_app.page.tsx',
     'pages/index.page.tsx',
+    '.stories.tsx',
   ],
   coverageReporters: ['lcov', 'html', 'text'],
   moduleNameMapper: {
