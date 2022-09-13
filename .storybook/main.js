@@ -1,9 +1,9 @@
 module.exports = {
   stories: ['../components/**/*.stories.tsx', '../components/**/*.stories.mdx'],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
     {
       /**
        * Fix Storybook issue with PostCSS@8
@@ -16,11 +16,11 @@ module.exports = {
         },
       },
     },
-    'storybook-addon-next'
+    'storybook-addon-next',
   ],
-  "framework": "@storybook/react",
-  "core": {
-    "builder": "@storybook/builder-webpack5"
+  framework: '@storybook/react',
+  core: {
+    builder: '@storybook/builder-webpack5',
   },
   typescript: {
     check: false,
@@ -28,8 +28,7 @@ module.exports = {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
-      propFilter: (prop) =>
-        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
     },
   },
   // webpackFinal: async (config, { configType }) => {
@@ -45,4 +44,4 @@ module.exports = {
 
   //   return config;
   // },
-}
+};
