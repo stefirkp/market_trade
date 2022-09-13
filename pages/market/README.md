@@ -9,16 +9,16 @@ The price movement should be show in
 - 1 year
   The page should show all crypto asset that available in Pintu. So that I can choose asset and decide to buy or sell.
 
-![Screenshot](docs/market-trade-page.png)
+![Screenshot](../../docs/market-trade-page.png)
 
-## Data Source
+## Data Sources
 
 In this page, we call 2 enpoint.
 
 1. Get all currencies
    Contain all asset crypto information, like name, symbol curencies, logo, color, and etc.
 
-# Model Data
+### Model Data
 
 ```js
 const getAllCurrenciesData = [
@@ -49,10 +49,12 @@ const getAllCurrenciesData = [
 
 This endpoint will mapping to get name, currency symbol, and logo to show in table market.
 
+---
+
 2. Get all price changes
    All asset price changes will provide by this endpoint. The price changes will show in day, week, month in percentage. And the price in day. This page should be convert to IDR.
 
-# Model data
+### Model data
 
 ```js
 const getPriceChangesData = [

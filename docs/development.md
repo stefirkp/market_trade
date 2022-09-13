@@ -3,15 +3,15 @@
 This project use some tech stack.
 Framework
 
-- [Next.js] (https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
+- [next.js](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
 - Typescript
 
 ## Styling
 
 For styling
 
-- [Tailwindcss] (https://tailwindcss.com/docs/installation)
-- [postcss] (https://tailwindcss.com/docs/installation/using-postcss)
+- [tailwindcss](https://tailwindcss.com/docs/installation)
+- [postcss](https://tailwindcss.com/docs/installation/using-postcss)
 
 There 2 ways to styling with tailwind
 
@@ -42,4 +42,4 @@ Read more [here](testing.md)
 
 ## Commit
 
-For commit rules using [semantic-commit-message] (https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
+For commit rules using [Semantic Commit Message](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)

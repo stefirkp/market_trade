@@ -8,6 +8,7 @@ This project bootstrapped with [`create-next-app`](https://github.com/vercel/nex
 1. [Requirements](#requirements)
 2. [Getting Started](#getting-started)
 3. [Development](docs/development.md)
+4. [Market Trade Page](pages/market/README.md)
 
 ## Requirements
 
