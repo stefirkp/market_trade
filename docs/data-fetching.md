@@ -18,8 +18,7 @@ Convention:
 ```ts
 // lib/services/resource.ts
 import { serverSideGatewayEndpoint } from '@lib/config';
-import { constructFetchInit } from './construct-fetch-init';
-import type { ServerFetchInitArg } from './construct-fetch-init';
+import axios, { AxiosResponse } from 'axios';
 import type { APIResponse } from '@lib/types/apiResponse';
 import type { Resource } from '@lib/types/entities/resource';
 
@@ -27,8 +26,9 @@ const endpoint = serverSideGatewayEndpoint + '/resource';
 
 /* GET all */
 
-export function getAllResources(initArg: ServerFetchInitArg): Promise<APIResponse<Resource[]>> {
-  return fetch(`${endpoint}/${id}`, constructFetchInit(initArg)).then((res) => res.json());
+export function getAllResources(initArg: ServerFetchInitArg): AxiosResponse<APIResponse<Resource>> {
+  const res = await axios(url);
+  return res;
 }
 
 /* GET by id */
@@ -36,96 +36,9 @@ export function getAllResources(initArg: ServerFetchInitArg): Promise<APIRespons
 export function getResourceById(
   id: number,
   initArg: ServerFetchInitArg,
-): Promise<APIResponse<Resource>> {
-  return fetch(`${endpoint}/${id}`, constructFetchInit(initArg)).then((res) => res.json());
+): AxiosResponse<APIResponse<Resource>> {
+  return await axios(url);
 }
-```
-
-### getServerSideProps
-
-After you have the service layer in place, you’re ready to make server-side fetch.
-
-Example for GET all:
-
-```tsx
-// pages/resource/index.page.tsx
-import type { GetServerSideProps, NextPage } from 'next';
-import { getAllResources } from '@lib/services/resource';
-import type { Resource } from '@lib/types/entities/resource';
-
-type Props = {
-  resources: Resource[];
-};
-
-const ResourcesPage: NextPage<Props> = ({ resources }) => {
-  return <pre>{JSON.stringify(resources, null, 2)}</pre>;
-};
-
-export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
-  const response = await getAllResources({
-    ctx,
-    opts: {
-      // ... optional, if needed
-    },
-  });
-
-  if (response.code !== 'SUCCESS') {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      resources: response.data,
-    },
-  };
-};
-```
-
-Example for GET by id:
-
-```tsx
-// pages/resource/[id].page.tsx
-import type { GetServerSideProps, NextPage } from 'next';
-import { getResourceById } from '@lib/services/resource';
-import type { Resource } from '@lib/types/entities/resource';
-
-type Props = {
-  resource: Resource;
-};
-
-const ResourceDetailPage: NextPage<Props> = ({ resource }) => {
-  return <pre>{JSON.stringify(resource, null, 2)}</pre>;
-};
-
-export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
-  const id = ctx.params.id;
-  const response = await getResourceById(id, {
-    ctx,
-    opts: {
-      // ... optional, if needed
-    },
-  });
-
-  if (response.code !== 'SUCCESS') {
-    return {
-      redirect: {
-        destination: '/resource',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      resource: response.data,
-    },
-  };
-};
 ```
 
 ## Client-side data fetching
@@ -142,18 +55,18 @@ Convention:
 
 ```ts
 // lib/services/resource.ts
-import { clientSideGatewayEndpoint } from '@lib/config';
-import { constructFetchInit } from './construct-fetch-init';
-import type { ClientFetchInitArg } from './construct-fetch-init';
+import { serverSideGatewayEndpoint } from '@lib/config';
+import axios, { AxiosResponse } from 'axios';
 import type { APIResponse } from '@lib/types/apiResponse';
 import type { Resource } from '@lib/types/entities/resource';
 
-const endpoint = clientSideGatewayEndpoint + '/resource';
+const endpoint = serverSideGatewayEndpoint + '/resource';
 
 /* GET all */
 
-export function getAllResources(initArg: ClientFetchInitArg): Promise<APIResponse<Resource[]>> {
-  return fetch(`${endpoint}/${id}`, constructFetchInit(initArg)).then((res) => res.json());
+export function getAllResources(initArg: ServerFetchInitArg): AxiosResponse<APIResponse<Resource>> {
+  const res = await axios(url);
+  return res;
 }
 
 export function useGetAllResources() {
@@ -163,56 +76,17 @@ export function useGetAllResources() {
 }
 
 /* GET by id */
-
 export function getResourceById(
   id: number,
-  initArg: ClientFetchInitArg,
-): Promise<APIResponse<Resource>> {
-  return fetch(`${endpoint}/${id}`, constructFetchInit(initArg)).then((res) => res.json());
+  initArg: ServerFetchInitArg,
+): AxiosResponse<APIResponse<Resource>> {
+  return await axios(url);
 }
 
 export function useGetResourceById() {
   const { locale } = useRouter();
 
   return useCallback((id: number) => getResourceById(id, { locale }), [locale]);
-}
-
-/* GET by multiple params */
-
-type Params = {
-  keyword: string;
-  size: number;
-};
-
-export function getResourceByParams(
-  params: Params,
-  initArg: ClientFetchInitArg,
-): Promise<APIResponse<Resource[]>> {
-  return fetch(endpoint, constructFetchInit(initArg)).then((res) => res.json());
-}
-
-export function useGetResourceByParams() {
-  const { locale } = useRouter();
-
-  return useCallback((params: Params) => getResourceByParams(params, { locale }), [locale]);
-}
-
-/* POST */
-
-export function postResource(
-  resource: Resource,
-  initArg: ClientFetchInitArg,
-): Promise<APIResponse<Resource>> {
-  return fetch(
-    endpoint,
-    constructFetchInit({ ...initArg, opts: { ...initArg.opts, method: 'POST' } }),
-  ).then((res) => res.json());
-}
-
-export function usePostResource() {
-  const { locale } = useRouter();
-
-  return useCallback((resource: Resource) => postResource(resource, { locale }), [locale]);
 }
 ```
 
