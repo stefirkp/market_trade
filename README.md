@@ -3,6 +3,8 @@
 Pintu market trade web app project. Check Usage.md for details on this specific repo.
 This project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+[DEMO](https://market-trade-eight.vercel.app/market)
+
 ## Table of Contents
 
 1. [Requirements](#requirements)
